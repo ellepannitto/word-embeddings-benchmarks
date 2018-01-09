@@ -304,4 +304,27 @@ def fetch_SimLex999():
     POS = data[['POS']].values
     assoc = data[['Assoc(USF)', 'SimAssoc333']].values
 
-    return Bunch(X=X.astype("object"), y=y, sd=sd, conc=conc, POS=POS, assoc=assoc)
+    return Bunch(X=X.astype("object"), y=y, sd=sd, conc=conc, POS=POS, assoc=assoc) 
+
+
+def fetch_SimVerb3500():
+    """
+    Returns
+    -------
+    data : sklearn.datasets.base.Bunch
+        dictionary-like object. Keys of interest:
+        'X': matrix of 2 words per column,
+        'y': vector with scores
+    -------
+    """
+
+    data = _get_as_pd('file://../../dataset/SimVerb-3500.txt', 
+                     'similarity', header=None, encoding='utf-8', sep="\t").values
+    
+    print data
+    X = data[:, 0:2].astype("object")
+    y = data[:, 3].astype(np.float)
+    
+    print Bunch(X=X, y=y)
+    raw_input()
+    return Bunch(X=X, y=y)
