@@ -321,10 +321,7 @@ def fetch_SimVerb3500():
     data = _get_as_pd('file://../../dataset/SimVerb-3500.txt', 
                      'similarity', header=None, encoding='utf-8', sep="\t").values
     
-    print data
     X = data[:, 0:2].astype("object")
     y = data[:, 3].astype(np.float)
     
-    print Bunch(X=X, y=y)
-    raw_input()
     return Bunch(X=X, y=y)
